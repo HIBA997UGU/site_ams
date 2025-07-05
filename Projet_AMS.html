@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Stage - SONARGES</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #005f87;
+            --secondary: #e67e22;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        
+        .nav-link {
+            color: var(--white);
+            margin: 0 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1075&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--white);
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .skill-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* Testimonials */
+        .testimonial {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '\201C';
+            font-size: 5rem;
+            color: rgba(0, 95, 135, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .footer-links h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: var(--white);
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        /* Activity Steps */
+        .activity-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+        }
+        
+        .groups-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .group-card {
+            background: rgba(0, 95, 135, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+            flex: 1 1 200px;
+        }
+        
+        /* Challenges */
+        .challenges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .challenge-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .challenge-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge-header i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .challenge-body {
+            padding: 20px;
+        }
+        
+        /* Remerciements */
+        .thanks-container {
+            background: linear-gradient(135deg, var(--primary) 0%, #0078a7 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .thanks-container::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .thanks-container::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        
+        .thanks-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .thanks-content h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Rapport SONARGES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars" style="color: white;"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#introduction">Introduction</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="structureDropdown" role="button" data-bs-toggle="dropdown">
+                            Structure
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#historique">Historique</a>
+                            <a class="dropdown-item" href="#missions">Missions</a>
+                            <a class="dropdown-item" href="#equipements">Équipements</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#deroulement">Déroulement</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#competences">Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#remerciements">Remerciements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bilan">Bilan</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Rapport de Stage SONARGES</h1>
+            <p>Encadrement des activités aquatiques dans un complexe sportif d'excellence - Expérience professionnelle enrichissante au sein de la Société Nationale de Réalisation et de Gestion des Équipements Sportifs</p>
+            <a href="#introduction" class="btn btn-primary">Découvrir le rapport</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Introduction</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto text-center">
+                    <p>Mon stage au sein de SONARGES s'inscrit dans le cadre de ma formation en sport. Cette entreprise publique occupe une place centrale dans le développement et la gestion des grandes infrastructures sportives au Maroc. Elle est chargée de la gestion, de l'entretien et de la modernisation de plusieurs stades et complexes sportifs majeurs, ce qui en fait un acteur stratégique dans le paysage sportif national.</p>
+                    <p>Mon intégration à cette structure m'a permis de découvrir de près les exigences d'un environnement professionnel axé sur l'excellence, la performance et la rigueur organisationnelle. Les objectifs principaux étaient de mettre en pratique mes connaissances théoriques, de renforcer mes compétences techniques et de mieux comprendre les réalités du terrain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure Section -->
+    <section id="historique" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Historique de SONARGES</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2008</h3>
+                        <p>Création de SONARGES pour superviser la construction des stades</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2011</h3>
+                        <p>Inauguration des grands stades de Marrakech et Tanger</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2012</h3>
+                        <p>Inauguration du Grand stade d'Agadir</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>2020</h3>
+                        <p>Prise en charge de la gestion de l'exploitation des grands stades</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>2024</h3>
+                        <p>Extension à 54 installations sportives et construction du plus grand stade au monde à Casablanca</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Missions Section -->
+    <section id="missions" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Missions Principales</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Gestion des infrastructures</h3>
+                            <p class="card-text">SONARGES a pour mandat de renforcer et de professionnaliser la gestion des infrastructures sportives au Maroc. Elle est en charge de la gestion et de l'entretien des principales installations sportives du pays.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Développement sportif</h3>
+                            <p class="card-text">Positionner le Maroc comme un exemple en matière de développement sportif avec une vision de devenir le leader incontesté dans la conception et la gestion d'infrastructures sportives.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Événements internationaux</h3>
+                            <p class="card-text">Préparation des infrastructures pour la Coupe d'Afrique des Nations (CAN) 2025 et la Coupe du Monde 2030 que le Maroc co-organisera avec l'Espagne et le Portugal.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title">Innovation et excellence</h3>
+                            <p class="card-text">Proposer des solutions novatrices et adaptées aux exigences des clients et utilisateurs, avec des valeurs d'éthique, d'innovation et d'excellence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipements Section -->
+    <section id="equipements" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Infrastructures Gérées</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-futbol feature-icon mb-3" style="font-size: 2.5rem; color: var(--secondary);"></i>
+                            <h3>Grands stades</h3>
+                            <ul class="text-start">
+                                <li>Grand Stade Hassan II (Benslimane)</li>
+                                <li>Complexe Sportif Mohammed V (Casablanca)</li>
+                                <li>Grand Stade de Tanger</li>
+                                <li>Grand Stade de Marrakech</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-swimming-pool feature-icon mb-3" style="font-size: 2.5rem; color: var(--secondary);"></i>
+                            <h3>Piscines</h3>
+                            <ul class="text-start">
+                                <li>Piscine olympique de Rabat</li>
+                                <li>Piscine olympique de Casablanca</li>
+                                <li>Piscine semi-olympique de Fès</li>
+                                <li>Piscine semi-olympique Marrakech</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-table-tennis feature-icon mb-3" style="font-size: 2.5rem; color: var(--secondary);"></i>
+                            <h3>Autres installations</h3>
+                            <ul class="text-start">
+                                <li>Salles omnisports</li>
+                                <li>Courts de tennis</li>
+                                <li>Infrastructures culturelles</li>
+                                <li>Centres de formation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deroulement Section -->
+    <section id="deroulement" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Déroulement du Stage</h2>
+            </div>
+            
+            <div class="activity-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Intégration dans la structure</h3>
+                        <p>Accueil par l'équipe encadrante et découverte des différents membres du personnel. Stage centré sur l'encadrement des séances de natation pour enfants âgés de 5 à 15 ans.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Encadrement des activités</h3>
+                        <p>Participation à l'encadrement des séances réparties en quatre niveaux selon l'âge et le niveau technique des enfants.</p>
+                        <div class="groups-container">
+                            <div class="group-card">
+                                <h4>Groupe 1 (4-6 ans)</h4>
+                                <p>Acclimatation à l'eau et apprentissage des mouvements de battements des jambes</p>
+                            </div>
+                            <div class="group-card">
+                                <h4>Groupe 2</h4>
+                                <p>Battements de jambes avec travail sur la respiration</p>
+                            </div>
+                            <div class="group-card">
+                                <h4>Groupe 3</h4>
+                                <p>Battements de jambes avec respiration latérale</p>
+                            </div>
+                            <div class="group-card">
+                                <h4>Groupe 4</h4>
+                                <p>Perfectionnement des techniques de nage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Activités annexes</h3>
+                        <p>Participation à la communication avec les parents et organisation d'activités ludiques pour maintenir la motivation des enfants.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Résolution de problèmes</h3>
+                        <p>Gestion de situations complexes comme un enfant non motivé ou un enfant avec phobie de l'eau.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competences Section -->
+    <section id="competences" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compétences Développées</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Savoirs théoriques</h3>
+                    <p>Mise en pratique des connaissances académiques dans un contexte professionnel réel.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-swimmer"></i>
+                    </div>
+                    <h3>Savoir-faire</h3>
+                    <p>Techniques d'encadrement, pédagogie adaptée, gestion de la sécurité aquatique.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Savoir-être</h3>
+                    <p>Autonomie, communication, responsabilité, gestion des relations avec les parents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Difficultés Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Difficultés Rencontrées</h2>
+            </div>
+            
+            <div class="challenges">
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <i class="fas fa-child"></i>
+                        <h3>Enfant non motivé</h3>
+                    </div>
+                    <div class="challenge-body">
+                        <p>Un enfant de 11 ans participait uniquement pour faire plaisir à sa mère, sans enthousiasme, perturbant les sessions.</p>
+                        <p><strong>Solution:</strong> Communication bienveillante avec l'enfant puis avec la mère pour proposer une activité plus adaptée.</p>
+                    </div>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <i class="fas fa-water"></i>
+                        <h3>Phobie de l'eau</h3>
+                    </div>
+                    <div class="challenge-body">
+                        <p>Un garçon de 5 ans terrorisé à sa première séance, refusant de s'approcher de l'eau.</p>
+                        <p><strong>Solution:</strong> Approche progressive et ludique pour établir la confiance et familiarisation douce avec l'eau.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remerciements Section -->
+    <section id="remerciements" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Remerciements</h2>
+            </div>
+            
+            <div class="thanks-container">
+                <div class="thanks-content">
+                    <h3>Expression de Gratitude</h3>
+                    <p>Je tiens à exprimer ma profonde gratitude à toutes les personnes qui ont contribué de près ou de loin au bon déroulement de ce stage et à l'élaboration de ce rapport.</p>
+                    
+                    <p>Mes remerciements s'adressent en premier lieu à Monsieur <strong>Directeur du Complexe Sportif</strong>, pour m'avoir accordé cette opportunité de stage et pour son accueil chaleureux au sein de SONARGES.</p>
+                    
+                    <p>Je remercie tout particulièrement mon maître de stage, <strong>M. [Nom du Maître de Stage]</strong>, pour son encadrement précieux, ses conseils avisés et sa disponibilité tout au long de cette expérience professionnelle. Son expertise et sa pédagogie ont grandement contribué à mon apprentissage.</p>
+                    
+                    <p>Je tiens également à remercier l'ensemble de l'équipe pédagogique du complexe sportif pour leur soutien, leurs orientations et les connaissances qu'ils ont bien voulu partager avec moi.</p>
+                    
+                    <p>Un merci spécial à mes collègues stagiaires pour l'entraide, la bonne ambiance de travail et les échanges enrichissants que nous avons partagés durant cette période.</p>
+                    
+                    <p>Enfin, je ne saurais oublier de remercier mes professeurs de l'<strong>Académie des Métiers du Sport</strong> pour leur accompagnement dans la préparation de ce stage et leurs précieux conseils pour la rédaction de ce rapport.</p>
+                    
+                    <p>C'est grâce à l'implication de toutes ces personnes que cette expérience a été aussi enrichissante sur les plans professionnel et personnel.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bilan Section -->
+    <section id="bilan" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bilan Personnel</h2>
+            </div>
+            
+            <div class="testimonial">
+                <p>Ce stage m'a permis de mieux comprendre l'évolution pédagogique dans l'apprentissage de la natation, depuis les premières bases jusqu'au perfectionnement. J'ai pu participer activement au processus d'apprentissage des enfants, tout en développant mes propres compétences d'observation, de correction technique et de communication avec un jeune public.</p>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Stagiaire">
+                    <div>
+                        <h4>Stagiaire</h4>
+                        <p>Académie des Métiers du Sport</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-primary text-white">
+                            <h3>Apports du stage</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Expérience concrète en encadrement aquatique</li>
+                                <li>Compréhension des enjeux de gestion d'une structure sportive</li>
+                                <li>Développement des compétences relationnelles</li>
+                                <li>Confirmation de mon projet professionnel</li>
+                                <li>Acquisition de méthodes pédagogiques adaptées</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header bg-secondary text-white">
+                            <h3>Axes d'amélioration</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>Approfondir les techniques pédagogiques avancées</li>
+                                <li>Développer des compétences en gestion administrative</li>
+                                <li>Améliorer la gestion du stress en situation difficile</li>
+                                <li>Acquérir plus d'autorité naturelle</li>
+                                <li>Diversifier les méthodes d'animation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galerie</h2>
+            </div>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Piscine">
+                    <div class="gallery-caption">Piscine semi-olympique du complexe</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1543357480-c60d400e2ef9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Encadrement">
+                    <div class="gallery-caption">Séance d'encadrement avec les enfants</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Animation">
+                    <div class="gallery-caption">Activité ludique en binôme</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Stade">
+                    <div class="gallery-caption">Le grand stade du complexe</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">SONARGES</div>
+                    <p>Société Nationale de Réalisation et de Gestion des Équipements Sportifs</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h3>Liens utiles</h3>
+                        <ul>
+                            <li><a href="#">Site officiel SONARGES</a></li>
+                            <li><a href="#">Académie des Métiers du Sport</a></li>
+                            <li><a href="#">Ministère des Sports</a></li>
+                            <li><a href="#">Fédération de Natation</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-links">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li><i class="fas fa-map-marker-alt"></i> Complexe Sportif, Casablanca</li>
+                            <li><i class="fas fa-phone"></i> +212 5 22 00 00 00</li>
+                            <li><i class="fas fa-envelope"></i> contact@sonarges.ma</li>
+                            <li><i class="fas fa-user-graduate"></i> stagiaire@email.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Rapport de Stage - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without page reload
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    } else {
+                        window.location.hash = targetId;
+                    }
+                }
+            });
+        });
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.skill-card, .timeline-item, .step, .challenge-card, .gallery-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.skill-card, .timeline-item, .step, .challenge-card, .gallery-item').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.6s ease';
+        });
+        
+        // Run animation on load and scroll
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+        
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
